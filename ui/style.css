@@ -1,5 +1,3 @@
-/* styles.css */
-
 body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
@@ -34,45 +32,45 @@ body {
 }
 
 .notification.info {
-  box-shadow: 0 0 10px #3498db; /* Destello azul para tipo info */
+  box-shadow: 0 0 10px #3498db;
 }
 
 .notification.success {
-  box-shadow: 0 0 10px #2ecc71; /* Destello verde para tipo success */
+  box-shadow: 0 0 10px #2ecc71;
 }
 
 .notification.error {
-  box-shadow: 0 0 10px #e74c3c; /* Destello rojo para tipo error */
+  box-shadow: 0 0 10px #e74c3c;
 }
 
 .notification i {
-  font-size: 24px; /* Ajusta el tamaño del ícono según sea necesario */
+  font-size: 24px;
   margin-right: 10px;
-  color: #fff; /* Color por defecto del ícono */
+  color: #fff;
 }
 
 .notification.info i {
-  color: #3498db; /* Color azul para tipo info */
+  color: #3498db;
 }
 
 .notification.success i {
-  color: #2ecc71; /* Color verde para tipo success */
+  color: #2ecc71;
 }
 
 .notification.error i {
-  color: #e74c3c; /* Color rojo para tipo error */
+  color: #e74c3c;
 }
 
 .notification.info .progress-bar {
-  background-color: #3498db; /* Color azul para tipo info */
+  background-color: #3498db;
 }
 
 .notification.success .progress-bar {
-  background-color: #2ecc71; /* Color verde para tipo success */
+  background-color: #2ecc71;
 }
 
 .notification.error .progress-bar {
-  background-color: #e74c3c; /* Color rojo para tipo error */
+  background-color: #e74c3c;
 }
 
 @keyframes icon-show {
