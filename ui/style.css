@@ -1,0 +1,119 @@
+/* styles.css */
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#notification-container {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+.notification {
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  font-family: 'Pacifico', cursive;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: relative;
+}
+
+.notification.info {
+  box-shadow: 0 0 10px #3498db; /* Destello azul para tipo info */
+}
+
+.notification.success {
+  box-shadow: 0 0 10px #2ecc71; /* Destello verde para tipo success */
+}
+
+.notification.error {
+  box-shadow: 0 0 10px #e74c3c; /* Destello rojo para tipo error */
+}
+
+.notification i {
+  font-size: 24px; /* Ajusta el tamaño del ícono según sea necesario */
+  margin-right: 10px;
+  color: #fff; /* Color por defecto del ícono */
+}
+
+.notification.info i {
+  color: #3498db; /* Color azul para tipo info */
+}
+
+.notification.success i {
+  color: #2ecc71; /* Color verde para tipo success */
+}
+
+.notification.error i {
+  color: #e74c3c; /* Color rojo para tipo error */
+}
+
+.notification.info .progress-bar {
+  background-color: #3498db; /* Color azul para tipo info */
+}
+
+.notification.success .progress-bar {
+  background-color: #2ecc71; /* Color verde para tipo success */
+}
+
+.notification.error .progress-bar {
+  background-color: #e74c3c; /* Color rojo para tipo error */
+}
+
+@keyframes icon-show {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.icon-show {
+  animation: icon-show 0.5s ease-in-out;
+}
+
+.notification img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.notification.show {
+  opacity: 1;
+}
+
+.notification .progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: #fff;
+  border-radius: 0 0 10px 10px;
+  animation: progress-animation 3s linear forwards;
+}
+
+@keyframes progress-animation {
+  to {
+    width: 0;
+  }
+}
