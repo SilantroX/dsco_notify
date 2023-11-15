@@ -28,3 +28,6 @@ Parámetros de `createNotification`:
 - `message`: El mensaje que deseas mostrar en la notificación.
 
 ¡Listo! Ahora deberías tener un sistema de notificaciones funcionando en tu servidor FiveM.
+
+## Soporte
+Discord: https://discord.gg/VUQctCJdWc
