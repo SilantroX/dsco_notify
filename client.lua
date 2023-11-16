@@ -7,8 +7,7 @@ function showNotify(msgtype, message)
     elseif msgtype == "error" then
         emoji = "fas fa-exclamation-triangle"
     else
-        print("Invalid message type")
-        return
+        emoji = "fas fa-info-circle"
     end
     SendNUIMessage({
         type = msgtype,
