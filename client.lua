@@ -1,18 +1,12 @@
 function showNotify(msgtype, message)
-    local emoji = nil
-    if msgtype == "info" then
-        emoji = "fas fa-info-circle"
-    elseif msgtype == "success" then
-        emoji = "fas fa-check-circle"
-    elseif msgtype == "error" then
-        emoji = "fas fa-exclamation-triangle"
-    else
-        emoji = "fas fa-info-circle"
+    if msgtype ~= "info" and msgtype ~= "success" and msgtype ~= "error" then
+        print("Invalid message type")
+        return
     end
     SendNUIMessage({
-        type = msgtype,
-        message = message,
-        emoji = emoji
+        type     = msgtype,
+        message  = message,
+        position = Config.Configuracion.position,
     })
 end
 
@@ -24,3 +18,8 @@ RegisterNetEvent("dsco_notify:showNotify")
 AddEventHandler("dsco_notify:showNotify", function(msgtype, message)
     showNotify(msgtype, message)
 end)
+
+-- Comandos de prueba
+RegisterCommand('testsuccess', function() showNotify("success", "¡El script está funcionando!") end)
+RegisterCommand('testerror', function() showNotify("error", "¡El script está funcionando!") end)
+RegisterCommand('testinfo', function() showNotify("info", "¡El script está funcionando!") end)

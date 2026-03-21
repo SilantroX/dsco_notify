@@ -1,117 +1,214 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background: transparent !important;
+}
+
 body {
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+    background: transparent !important;
+    overflow: hidden;
+    pointer-events: none;
+    user-select: none;
 }
 
+/* ── Contenedor — posición via clase ── */
 #notification-container {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 1000;
 }
 
+/* Posiciones disponibles */
+#notification-container.top-right {
+    top: 20px;
+    right: 20px;
+    align-items: flex-end;
+}
+
+#notification-container.top-left {
+    top: 20px;
+    left: 20px;
+    align-items: flex-start;
+}
+
+#notification-container.top-center {
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    align-items: center;
+}
+
+#notification-container.bottom-right {
+    bottom: 20px;
+    right: 20px;
+    align-items: flex-end;
+    flex-direction: column-reverse;
+}
+
+#notification-container.bottom-left {
+    bottom: 20px;
+    left: 20px;
+    align-items: flex-start;
+    flex-direction: column-reverse;
+}
+
+#notification-container.bottom-center {
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    align-items: center;
+    flex-direction: column-reverse;
+}
+
+/* ── Notificación base ── */
 .notification {
-  padding: 15px;
-  margin-bottom: 15px;
-  border-radius: 10px;
-  color: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-  font-family: 'Pacifico', cursive;
-  background-color: rgba(0, 0, 0, 0.7);
-  position: relative;
+    display: flex;
+    align-items: stretch;
+    min-width: 320px;
+    max-width: 420px;
+    background: rgba(8, 8, 10, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.55);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    position: relative;
+    pointer-events: auto;
 }
 
-.notification.info {
-  box-shadow: 0 0 10px #3498db;
+/* Entrada desde la derecha por defecto */
+.notification {
+    transform: translateX(16px);
 }
 
-.notification.success {
-  box-shadow: 0 0 10px #2ecc71;
+#notification-container.top-left .notification,
+#notification-container.bottom-left .notification {
+    transform: translateX(-16px);
 }
 
-.notification.error {
-  box-shadow: 0 0 10px #e74c3c;
-}
-
-.notification i {
-  font-size: 24px;
-  margin-right: 10px;
-  color: #fff;
-}
-
-.notification.info i {
-  color: #3498db;
-}
-
-.notification.success i {
-  color: #2ecc71;
-}
-
-.notification.error i {
-  color: #e74c3c;
-}
-
-.notification.info .progress-bar {
-  background-color: #3498db;
-}
-
-.notification.success .progress-bar {
-  background-color: #2ecc71;
-}
-
-.notification.error .progress-bar {
-  background-color: #e74c3c;
-}
-
-@keyframes icon-show {
-  0% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(1.2);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-.icon-show {
-  animation: icon-show 0.5s ease-in-out;
-}
-
-.notification img {
-  width: 20px;
-  height: 20px;
-  margin-right: 10px;
+#notification-container.top-center .notification,
+#notification-container.bottom-center .notification {
+    transform: translateY(-8px);
 }
 
 .notification.show {
-  opacity: 1;
+    opacity: 1;
+    transform: translateX(0) translateY(0) !important;
 }
 
-.notification .progress-bar {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 5px;
-  background-color: #fff;
-  border-radius: 0 0 10px 10px;
-  animation: progress-animation 3s linear forwards;
+/* ── Barra acento izquierda ── */
+.notification__bar {
+    width: 3px;
+    flex-shrink: 0;
 }
 
-@keyframes progress-animation {
-  to {
-    width: 0;
-  }
+.notification.info .notification__bar {
+    background: rgb(96, 165, 250);
+}
+
+.notification.success .notification__bar {
+    background: rgb(52, 211, 153);
+}
+
+.notification.error .notification__bar {
+    background: rgb(248, 113, 113);
+}
+
+/* ── Ícono ── */
+.notification__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px 0 12px;
+    flex-shrink: 0;
+}
+
+.notification__icon i {
+    font-size: 16px;
+}
+
+.notification.info .notification__icon i {
+    color: rgb(96, 165, 250);
+}
+
+.notification.success .notification__icon i {
+    color: rgb(52, 211, 153);
+}
+
+.notification.error .notification__icon i {
+    color: rgb(248, 113, 113);
+}
+
+/* ── Separador ── */
+.notification__sep {
+    width: 1px;
+    align-self: stretch;
+    margin: 10px 0;
+    background: rgba(255, 255, 255, 0.07);
+    flex-shrink: 0;
+}
+
+/* ── Mensaje ── */
+.notification__msg {
+    flex: 1;
+    padding: 13px 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.80);
+    word-break: break-word;
+}
+
+/* ── Progreso ── */
+.notification__progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.notification__progress-fill {
+    height: 100%;
+    width: 100%;
+    transform-origin: left;
+}
+
+.notification.info .notification__progress-fill {
+    background: rgb(96, 165, 250);
+}
+
+.notification.success .notification__progress-fill {
+    background: rgb(52, 211, 153);
+}
+
+.notification.error .notification__progress-fill {
+    background: rgb(248, 113, 113);
+}
+
+.notification__progress-fill.drain {
+    animation: progressDrain 3s linear forwards;
+}
+
+@keyframes progressDrain {
+    from {
+        transform: scaleX(1);
+    }
+
+    to {
+        transform: scaleX(0);
+    }
 }
